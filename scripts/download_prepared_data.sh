@@ -16,14 +16,14 @@
 
 # Download prepared data for the ActEv and ETH/UCY experiments
 
-mkdir -p next-data
+mkdir -p /home/richardkxu/DATA/next-data
 
-wget https://next.cs.cmu.edu/data/final_annos.tgz -O next-data/final_annos.tgz
-wget https://next.cs.cmu.edu/data/person_features/actev_personboxfeat.tgz -O next-data/actev_personboxfeat.tgz
-wget https://next.cs.cmu.edu/data/person_features/ethucy_personboxfeat.tgz -O next-data/ethucy_personboxfeat.tgz
+wget https://next.cs.cmu.edu/data/final_annos.tgz -O /home/richardkxu/DATA/next-data/final_annos.tgz
+wget https://next.cs.cmu.edu/data/person_features/actev_personboxfeat.tgz -O /home/richardkxu/DATA/next-data/actev_personboxfeat.tgz
+wget https://next.cs.cmu.edu/data/person_features/ethucy_personboxfeat.tgz -O /home/richardkxu/DATA/next-data/ethucy_personboxfeat.tgz
 
 # extract and delete the tar files
-cd next-data
+cd /home/richardkxu/DATA/next-data
 
 tar -zxvf final_annos.tgz
 rm final_annos.tgz

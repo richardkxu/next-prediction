@@ -261,7 +261,7 @@ def read_data(args, data_type):
 
   data_path = os.path.join(args.prepropath, "data_%s.npz" % data_type)
 
-  data = dict(np.load(data_path))
+  data = dict(np.load(data_path, allow_pickle=True))
 
   # save some shared feature first
 

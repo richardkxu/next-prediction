@@ -39,11 +39,13 @@ python code/preprocess.py next-data/final_annos/actev_annos/virat_2.5fps_resized
 ## Step 3: Test the models - ActEv
 Run testing with our pretrained single model for ActEv experiments.
 
+```python
+python code/test.py /home/richardkxu/DATA/NEXT-DATA/actev_preprocess \
+  next-models/actev_single_model model --runId 1 --load_best \
+  --load_from next-models/actev_single_model/model/01/best.ckpt --is_actev --add_kp --add_activity \
+  --person_feat_path /home/richardkxu/DATA/NEXT-DATA/next-data/actev_personboxfeat --multi_decoder
 ```
-python code/test.py actev_preprocess next-models/actev_single_model model --runId 1 \
-  --load_best --is_actev --add_kp --add_activity \
-  --person_feat_path next-data/actev_personboxfeat --multi_decoder
-```
+
 The evaluation result should be:
 <table>
   <tr>
@@ -57,6 +59,37 @@ The evaluation result should be:
     <td>37.176</td>
   </tr>
 </table>
+
+Test results:
+```
+100%|##########| 535/535 [18:39<00:00,  2.09s/it]
+performance:
+0000_ade, 18.5173
+0000_fde, 38.880512
+0002_ade, 12.5554085
+0002_fde, 25.474648
+0400_ade, 13.4572315
+0400_fde, 28.538671
+0401_ade, 22.815294
+0401_fde, 47.292492
+0500_ade, 23.5591
+0500_fde, 47.287983
+act_ap, 0.1996404821024035
+ade, 17.978905
+fde, 37.175632
+grid1_acc, 0.29725467289719626
+grid2_acc, 0.3974883177570093
+mov_ade, 20.28942
+mov_fde, 42.356396
+static_ade, 14.221087
+static_fde, 28.749632
+traj_class_accuracy, 0.9351375073142189
+traj_class_accuracy_0, 0.8822806208698325
+traj_class_accuracy_1, 0.9676367759614476
+0000_ade 0000_fde 0002_ade 0002_fde 0400_ade 0400_fde 0401_ade 0401_fde 0500_ade 0500_fde act_ap ade fde grid1_acc grid2_acc mov_ade mov_fde static_ade static_fde traj_class_accuracy traj_class_accuracy_0 traj_class_accuracy_1
+18.5173 38.880512 12.5554085 25.474648 13.4572315 28.538671 22.815294 47.292492 23.5591 47.287983 0.1996404821024035 17.978905 37.175632 0.29725467289719626 0.3974883177570093 20.28942 42.356396 14.221087 28.749632 0.9351375073142189 0.8822806208698325 0.9676367759614476
+
+```
 
 ## Step 4: Preprocess - ETH/UCY
 Preprocess the data for training and testing. The following is for ETH/UCY
@@ -92,6 +125,14 @@ for dataset in {eth,hotel,univ,zara1,zara2};
       --scene_h 51 --scene_w 64 ;
   done
 ```
+
+```python
+python code/test.py /home/richardkxu/DATA/NEXT-DATA/ethucy_exp/preprocess_eth \
+  next-models/ethucy_single_model/eth model --runId 1 --load_best --scene_h 51 --scene_w 64 \
+  --load_from next-models/ethucy_single_model/eth/model/01/best.ckpt \
+  --person_feat_path /home/richardkxu/DATA/NEXT-DATA/next-data/ethucy_personboxfeat/eth 
+```
+
 The evaluation result should be:
 <table>
   <tr>
@@ -125,3 +166,18 @@ The evaluation result should be:
     <td>0.74</td>
   </tr>
 </table>
+
+eth test results:
+```
+100%|##########| 3/3 [00:07<00:00,  2.63s/it]
+performance:
+act_ap, None
+ade, 0.85683197
+fde, 1.9422761
+grid1_acc, 0.20833333333333334
+grid2_acc, 0.28125
+act_ap ade fde grid1_acc grid2_acc
+None 0.85683197 1.9422761 0.20833333333333334 0.28125
+
+```
+
